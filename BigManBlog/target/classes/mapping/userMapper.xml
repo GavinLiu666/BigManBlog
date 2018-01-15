@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigman.blog.dao.UserDao">
+  
+  
+  <insert id="addUser" parameterType="com.bigman.blog.bean.User"  >
+  	insert into users values (null,#{username},#{password},#{question},
+		#{answer},null,now())
+  </insert>
+  
+  <delete id="deleteUser" parameterType="int" >
+  	delete from ${table} where id = #{id}
+  </delete>
+  
+  <update id="alterUser" parameterType="com.bigman.blog.bean.User" >
+  	update  users set username=#{username},  pwd=#{password},
+  	 question=#{question}, answer=#{answer}, user_pic=#{user_pic}  where id=#{id}
+  </update>
+  
+  <select id="showUser" parameterType="int" >
+  select  username, pwd, question,answer, user_pic,regtime  
+  	from users where id=#{id}
+  </select>
+  
+  <select id="findUserByName" parameterType="String"  resultType="com.bigman.blog.bean.User" >
+  	select *  from users where username=#{username}
+  </select>
+  
+  
+ <update id="changePortrait"   >
+ 	update users set user_pic=#{user_pic} where id=#{id}
+ </update>
+  
+  
+</mapper>

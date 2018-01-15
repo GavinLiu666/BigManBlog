@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigman.blog.dao.UserInfoDao">
+  
+  <select id="findUserInfoByName" resultType="com.bigman.blog.bean.User_info" parameterType="String">
+  	select 
+  	i.id ,   u.username ,i.email ,i.mobile ,i.sex ,i.birthday ,i.blogs_num as blogs ,i.attend,
+     i.fans ,u.user_pic as icon  from user_info i right join users u on i.username=u.username  where u.username=#{username}
+  </select>
+  
+  <insert id="saveUser"  parameterType="com.bigman.blog.bean.User_info" >
+  	insert into user_info  (id ,   username ,   email ,  mobile ,  sex ,   birthday ,  blogs_num  ,  attend, fans)
+  		values(null,#{username},#{email},#{mobile},#{sex},#{birthday},#{blogs},#{attend},#{fans}); 
+  </insert>
+  
+  
+  <select id="findAllByPage" resultType="com.bigman.blog.bean.User_info" >
+  	select id ,   username , email , mobile , sex , birthday , blogs_num as blogs , attend, fans  from user_info 
+  		limit #{start} , #{size}
+  </select>
+  
+  <select id="isAttendFans"  resultType="int"  >
+  	select count(*) from  attend_fan where  attendId=#{attendId} and  fanId= #{myId} 
+  </select>
+  
+  
+  <insert id="addAttend"  >
+  	insert into attend_fan values (null,#{friendId},#{myId} )
+  </insert>
+  
+  <delete id="cancelAttend"  >
+  	delete from  attend_fan where attendId=#{friendId}  and  fanId= #{myId} 
+  </delete>
+  
+  
+  <delete id="deleteById">
+  	delete from user_info where id=#{id}
+  </delete>
+  
+  
+  
+  
+</mapper>
