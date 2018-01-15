@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigman.blog.dao.MicroBlogDao">
+
+
+	<insert id="addBlog" parameterType="com.bigman.blog.bean.MicroBlog">
+		insert into microBlog values(null,#{user_id},#{type},#{text},now())
+	</insert>
+
+	<delete id="deleteBlog" parameterType="int">
+		delete from microBlog where id=#{tid}
+	</delete>
+
+	<select id="selectMicroBlog" parameterType="int"
+		resultType="com.bigman.blog.bean.MicroBlog">
+		select id, type, text, create_time from microBlog where uid=#{uid}
+	</select>
+
+</mapper>
