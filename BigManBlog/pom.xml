@@ -5,9 +5,7 @@
 	<artifactId>BigManBlog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
 	<dependencies>
-
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -64,5 +62,4 @@
 			<version>1.4</version>
 		</dependency>
 	</dependencies>
-
 </project>
